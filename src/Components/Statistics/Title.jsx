@@ -3,7 +3,7 @@ import styled from '@emotion/styled/macro';
 
 const CustomTitle = styled.h2`
   font-size: 20px;
-  margin: 20px auto;
+  margin-bottom: 20px;
 `;
 
 function Title({ name }) {

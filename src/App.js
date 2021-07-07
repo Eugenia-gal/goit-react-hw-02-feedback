@@ -2,6 +2,7 @@ import { Component } from 'react';
 import FeedbackOptions from 'Components/FeedbackOptions';
 import Statistics from 'Components/Statistics';
 import Section from 'Components/Section';
+import NotificationMessage from 'Components/NotificationMessage';
 
 class App extends Component {
   state = {
@@ -29,6 +30,7 @@ class App extends Component {
 
   render() {
     const { good, neutral, bad } = this.state;
+    const isVoted = this.countTotalFeedback();
 
     return (
       <Section title="Please leave feedback">
@@ -37,13 +39,17 @@ class App extends Component {
           onLeaveFeedback={this.hendlerClick}
         />
 
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={this.countTotalFeedback}
-          positivePercentage={this.countPositiveFeedbackPercentage}
-        />
+        {isVoted ? (
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={this.countTotalFeedback}
+            positivePercentage={this.countPositiveFeedbackPercentage}
+          />
+        ) : (
+          <NotificationMessage message="No feedback given" />
+        )}
       </Section>
     );
   }
