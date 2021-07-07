@@ -1,6 +1,6 @@
 import styled from '@emotion/styled/macro';
 
-const VoteBtn = styled.button`
+const Button = styled.button`
   width: 70px;
   padding: 10px;
 
@@ -9,4 +9,4 @@ const VoteBtn = styled.button`
   }
 `;
 
-export default VoteBtn;
+export default Button;

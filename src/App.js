@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Button from './Components/Button';
+import VoteButton from './Components/Button';
 
 class App extends Component {
   state = {
@@ -15,18 +15,35 @@ class App extends Component {
     });
   };
 
+  countTotalFeedback = () => {
+    return this.state.good + this.state.neutral + this.state.bad;
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const total = this.countTotalFeedback();
+    const rez = Math.ceil((100 * this.state.good) / total);
+    return rez;
+  };
+
   render() {
     const { good, neutral, bad } = this.state;
+
     return (
       <div>
         <h1>Please leave feedback</h1>
-        <Button name="Good" id="good" onClick={this.hendlerClick} />
-        <Button name="Neutral" id="neutral" onClick={this.hendlerClick} />
-        <Button name="Bad" id="bad" onClick={this.hendlerClick} />
+        <VoteButton name="Good" id="good" onClick={this.hendlerClick} />
+        <VoteButton name="Neutral" id="neutral" onClick={this.hendlerClick} />
+        <VoteButton name="Bad" id="bad" onClick={this.hendlerClick} />
         <h2>Statistics</h2>
         <p>Good: {good}</p>
         <p>Neutral: {neutral}</p>
         <p>Bad: {bad}</p>
+        <p>Total: {this.countTotalFeedback()}</p>
+        <p>
+          Positive feedback:{' '}
+          {this.countTotalFeedback() &&
+            this.countPositiveFeedbackPercentage() + '%'}
+        </p>
       </div>
     );
   }

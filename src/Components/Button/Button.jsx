@@ -1,12 +1,19 @@
 import React from 'react';
-import VoteBtn from './Button.styled';
+import Button from './Button.styled';
+import PropTypes from 'prop-types';
 
-const Button = ({ name, onClick, id }) => {
+const VoteButton = ({ name, onClick, id }) => {
   return (
-    <VoteBtn type="button" id={id} onClick={onClick}>
+    <Button type="button" id={id} onClick={onClick}>
       {name}
-    </VoteBtn>
+    </Button>
   );
 };
 
-export default Button;
+VoteButton.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
+export default VoteButton;
