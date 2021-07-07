@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import VoteButton from 'Components/Button';
 import CustomOption from './FeedbackOptions.styled';
 
@@ -16,6 +17,11 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
       ))}
     </CustomOption>
   );
+};
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.array.isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
 };
 
 export default FeedbackOptions;
