@@ -1,5 +1,7 @@
 import { Component } from 'react';
-import VoteButton from './Components/Button';
+import FeedbackOptions from 'Components/FeedbackOptions';
+import Statistics from 'Components/Statistics';
+import Section from 'Components/Section';
 
 class App extends Component {
   state = {
@@ -29,22 +31,20 @@ class App extends Component {
     const { good, neutral, bad } = this.state;
 
     return (
-      <div>
-        <h1>Please leave feedback</h1>
-        <VoteButton name="Good" id="good" onClick={this.hendlerClick} />
-        <VoteButton name="Neutral" id="neutral" onClick={this.hendlerClick} />
-        <VoteButton name="Bad" id="bad" onClick={this.hendlerClick} />
-        <h2>Statistics</h2>
-        <p>Good: {good}</p>
-        <p>Neutral: {neutral}</p>
-        <p>Bad: {bad}</p>
-        <p>Total: {this.countTotalFeedback()}</p>
-        <p>
-          Positive feedback:{' '}
-          {this.countTotalFeedback() &&
-            this.countPositiveFeedbackPercentage() + '%'}
-        </p>
-      </div>
+      <Section title="Please leave feedback">
+        <FeedbackOptions
+          options={Object.keys(this.state)}
+          onLeaveFeedback={this.hendlerClick}
+        />
+
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={this.countTotalFeedback}
+          positivePercentage={this.countPositiveFeedbackPercentage}
+        />
+      </Section>
     );
   }
 }

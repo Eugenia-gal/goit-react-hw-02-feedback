@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const VoteButton = ({ name, onClick, id }) => {
   return (
-    <Button type="button" id={id} onClick={onClick}>
+    <Button type="button" key={id} id={id} onClick={onClick}>
       {name}
     </Button>
   );
